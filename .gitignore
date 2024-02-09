@@ -1,8 +1,8 @@
-/.vs/ProjectEvaluation/
-/.vs/Hannibal/DesignTimeBuild/
-/.vs/Hannibal/FileContentIndex/
-/.vs/Hannibal/v17/.futdcache.v2
-/.vs/Hannibal/v17/ipch
-/Hannibal/bin/
-/Hannibal/obj/
-/Hannibal/Hannibal.csproj.user
+/.vs/
+/SFML/
+/x64/
+/Hannibal/x64/
+/Hannibal/Hannibal.vcxproj
+/Hannibal/Hannibal.vcxproj.filters
+/Hannibal/Hannibal.vcxproj.user
+/Hannibal.sln
