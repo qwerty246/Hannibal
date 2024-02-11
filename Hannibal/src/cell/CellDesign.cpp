@@ -1,4 +1,5 @@
-#include <cell/CellDesign.h>
+#include "CellDesign.h"
+
 #include <Window.h>
 
 CellDesign::CellDesign(sf::Vector2f topLeft, sf::Vector2f botRight) :
@@ -32,12 +33,12 @@ void CellDesign::Draw()
    Window::Get().draw(rectangle);
 }
 
-bool CellDesign::IsInside(const sf::Vector2f& point) const
+bool CellDesign::IsInside(const sf::Event::MouseMoveEvent& mouseMove) const
 {
-   if (point.x < m_topLeft.x ||
-       point.x > m_botRight.x ||
-       point.y < m_topLeft.y ||
-       point.y > m_botRight.y)
+   if (mouseMove.x < m_topLeft.x ||
+       mouseMove.x > m_botRight.x ||
+       mouseMove.y < m_topLeft.y ||
+       mouseMove.y > m_botRight.y)
    {
       return false;
    }

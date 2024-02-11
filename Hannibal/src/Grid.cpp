@@ -1,16 +1,19 @@
-#include <Grid.h>
+#include "Grid.h"
+
 #include <StandardLength.h>
 #include <Window.h>
 
-Grid::Grid(uint horizontalNum, uint verticalNum, const sf::Color& colorLine, const sf::Color& colorBackround) :
+Grid::Grid(EventManagerPtr pEventManager, uint horizontalNum, uint verticalNum, const sf::Color& colorLine, const sf::Color& colorBackround) :
+   m_pEventManager(pEventManager),
    m_horizontalNum(horizontalNum),
    m_verticalNum(verticalNum),
    m_colorLine(colorLine),
-   m_colorBackround(colorBackround)
+   m_colorBackround(colorBackround),
+   m_cells()
 {
 }
 
-void Grid::Show()
+void Grid::CreateGrid()
 {
    m_cells.clear();
 
@@ -30,20 +33,24 @@ void Grid::Show()
          sf::Vector2f topLeft(i, j);
          sf::Vector2f botRight(i + length, j + length);
          float thickness = 4;
-         Cell cell(topLeft, botRight, m_colorBackround, m_colorLine, thickness);
+
+         Cell* cell = dynamic_cast<Cell*>(EventObjectFactory::CreateCell(m_pEventManager, topLeft, botRight, m_colorBackround, m_colorLine, thickness));
 
          sf::Vector2f topSubLeft(i + thickness, j + thickness);
          sf::Vector2f botSubRight(i + length - thickness, j + length - thickness);
-         CellDesignPtr subCell = std::make_shared<CellDesign>(topSubLeft, botSubRight,
-                                                              m_colorLine, sf::Color::White, thickness - 2);
-         cell.CreateSubCellDesign(subCell);
+         auto pSubCell = std::make_shared<CellDesign>(topSubLeft, botSubRight,
+            m_colorLine, sf::Color::White, thickness - 2);
+         cell->CreateSubCellDesign(pSubCell);
 
          m_cells.push_back(cell);
       }
    }
+}
 
+void Grid::Show()
+{
    for (auto i : m_cells)
    {
-      i.Draw();
+      i->Draw();
    }
 }

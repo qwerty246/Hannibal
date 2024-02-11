@@ -14,7 +14,7 @@ public:
 
    void Draw();
 
-   virtual bool IsInside(const sf::Vector2f& point) const;
+   virtual bool IsInside(const sf::Event::MouseMoveEvent& mouseMove) const;
    const sf::Vector2f& GetTopLeft() const;
    const sf::Vector2f& GetBotRight() const;
 private:

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Constants.h>
+#include <event/EventManager.h>
 #include <Window.h>
 
 class Display
@@ -14,11 +15,11 @@ public:
    void EventClosed();
    void EventResized();
 
-   void DrawGrid();
+   //void DrawGrid();
 
 private:
    Window& m_window;
-   sf::Event m_event;
+   EventManagerPtr m_pEventManager;
    const sf::Color m_colorBackround;
 };
 
