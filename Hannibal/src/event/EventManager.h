@@ -1,24 +1,27 @@
 #pragma once
 
 #include <list>
+#include <map>
 
-#include <Constants.h>
-#include <event/EventObject.h>
-#include <Window.h>
+#include <helpers/constants.h>
+#include <helpers/registeringPointers.h>
+#include <SFML/Graphics.hpp>
+
+class Window;
 
 class EventManager
 {
 public:
    EventManager();
-   ~EventManager();
+   ~EventManager() = default;
 
    const sf::Event& GetEvent() const;
    bool PollEvent(Window& window);
-   void RunCurrentEvent();
-   void RegisterEventObject(EventObject* pEventObject);
+   void RunAllEvents();
+   void RegisterEventObject(EventObjectPtr pEventObject);
 
 private:
    sf::Event m_event;
-   std::list<EventObject*> m_eventObjectList;
+   std::map<sf::Event::EventType, std::list<EventObjectPtr>> m_eventObjectLists;
 };
 

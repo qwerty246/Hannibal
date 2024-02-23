@@ -1,7 +1,10 @@
-#include "Grid.h"
-
+#include <Grid.h>
 #include <StandardLength.h>
 #include <Window.h>
+
+#include <cell/Cell.h>
+#include <event/EventManager.h>
+#include <event/EventObjectFactory.h>
 
 Grid::Grid(EventManagerPtr pEventManager, uint horizontalNum, uint verticalNum, const sf::Color& colorLine, const sf::Color& colorBackround) :
    m_pEventManager(pEventManager),
@@ -34,7 +37,7 @@ void Grid::CreateGrid()
          sf::Vector2f botRight(i + length, j + length);
          float thickness = 4;
 
-         Cell* cell = dynamic_cast<Cell*>(EventObjectFactory::CreateCell(m_pEventManager, topLeft, botRight, m_colorBackround, m_colorLine, thickness));
+         auto cell = std::dynamic_pointer_cast<Cell>(EventObjectFactory::CreateCell(m_pEventManager, topLeft, botRight, m_colorBackround, m_colorLine, thickness));
 
          sf::Vector2f topSubLeft(i + thickness, j + thickness);
          sf::Vector2f botSubRight(i + length - thickness, j + length - thickness);

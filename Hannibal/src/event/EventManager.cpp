@@ -1,19 +1,11 @@
-#include "EventManager.h"
+#include <Window.h>
+
+#include <event/EventManager.h>
+#include <event/EventObject.h>
 
 EventManager::EventManager() :
    m_event()
 {
-}
-
-EventManager::~EventManager()
-{
-   for (auto eventObject : m_eventObjectList)
-   {
-      if (eventObject)
-      {
-         delete eventObject;
-      }
-   }
 }
 
 const sf::Event& EventManager::GetEvent() const
@@ -26,15 +18,18 @@ bool EventManager::PollEvent(Window& window)
    return window.pollEvent(m_event);
 }
 
-void EventManager::RunCurrentEvent()
+void EventManager::RunAllEvents()
 {
-   for (auto pEventObject : m_eventObjectList)
+   for (auto eventObjectList : m_eventObjectLists)
    {
-      pEventObject->CheckEvent(m_event);
+      for (auto eventObject : eventObjectList.second)
+      {
+         eventObject->CheckEvent(m_event);
+      }
    }
 }
 
-void EventManager::RegisterEventObject(EventObject* pEventObject)
+void EventManager::RegisterEventObject(EventObjectPtr pEventObject)
 {
 
 }

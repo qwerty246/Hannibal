@@ -1,9 +1,6 @@
 #pragma once
 
-#include <Constants.h>
-
-class StandardLength;
-typedef std::shared_ptr<StandardLength> StandardLengthPtr;
+#include <helpers/constants.h>
 
 class StandardLength
 {

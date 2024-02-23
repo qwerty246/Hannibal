@@ -1,9 +1,7 @@
 #pragma once
 
-#include <Constants.h>
-
-class CellDesign;
-typedef std::shared_ptr<CellDesign> CellDesignPtr;
+#include <helpers/constants.h>
+#include <SFML/Graphics.hpp>
 
 class CellDesign
 {

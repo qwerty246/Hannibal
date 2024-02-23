@@ -1,8 +1,7 @@
-#include "EventObject.h"
-
 #include <event/EventManager.h>
+#include <event/EventObject.h>
 
-EventObject::EventObject(EventManagerPtr pEventManager)
+EventObject::EventObject(EventManagerPtr pEventManager) :
+   m_pEventManager(pEventManager)
 {
-   pEventManager->RegisterEventObject(this);
 }

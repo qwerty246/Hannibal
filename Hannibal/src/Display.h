@@ -1,8 +1,12 @@
 #pragma once
 
-#include <Constants.h>
-#include <event/EventManager.h>
-#include <Window.h>
+#include <memory>
+
+#include <helpers/constants.h>
+#include <helpers/registeringPointers.h>
+#include <SFML/Graphics.hpp>
+
+class Window;
 
 class Display
 {

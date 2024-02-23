@@ -2,8 +2,9 @@
 
 #include <vector>
 
-#include <Constants.h>
-#include <cell/Cell.h>
+#include <helpers/constants.h>
+#include <helpers/registeringPointers.h>
+#include <SFML/Graphics.hpp>
 
 class Grid
 {
@@ -21,6 +22,6 @@ private:
    const sf::Color m_colorLine;
    const sf::Color m_colorBackround;
 
-   std::vector<Cell*> m_cells;
+   std::vector<CellPtr> m_cells;
 };
 

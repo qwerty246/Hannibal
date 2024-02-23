@@ -1,9 +1,6 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-
-class Window;
-typedef std::shared_ptr<Window> WindowPtr;
+#include <SFML/Graphics/RenderWindow.hpp>
 
 class Window : public sf::RenderWindow
 {
