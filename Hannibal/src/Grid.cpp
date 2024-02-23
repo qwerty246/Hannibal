@@ -1,9 +1,11 @@
-#include "Grid.h"
-
+#include <Grid.h>
 #include <StandardLength.h>
 #include <Window.h>
 
-Grid::Grid(EventManagerPtr pEventManager, uint horizontalNum, uint verticalNum, const sf::Color& colorLine, const sf::Color& colorBackround) :
+#include <cell/Cell.h>
+#include <event/EventManager.h>
+
+Grid::Grid(std::shared_ptr<EventManager> pEventManager, uint horizontalNum, uint verticalNum, const sf::Color& colorLine, const sf::Color& colorBackround) :
    m_pEventManager(pEventManager),
    m_horizontalNum(horizontalNum),
    m_verticalNum(verticalNum),

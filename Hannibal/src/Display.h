@@ -1,8 +1,14 @@
 #pragma once
 
+#include <memory>
+
 #include <Constants.h>
-#include <event/EventManager.h>
-#include <Window.h>
+
+#include <SFML/Graphics/Color.hpp>
+
+class EventManager;
+class Window;
+class sf::Color;
 
 class Display
 {
@@ -19,7 +25,7 @@ public:
 
 private:
    Window& m_window;
-   EventManagerPtr m_pEventManager;
+   std::shared_ptr<EventManager> m_pEventManager;
    const sf::Color m_colorBackround;
 };
 

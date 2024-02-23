@@ -3,8 +3,11 @@
 #include <list>
 
 #include <Constants.h>
-#include <event/EventObject.h>
-#include <Window.h>
+
+#include <SFML/Graphics.hpp>
+
+class EventObject;
+class Window;
 
 class EventManager
 {

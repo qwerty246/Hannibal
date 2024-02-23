@@ -2,10 +2,8 @@
 
 #include <memory>
 
-#include <SFML/Window/Event.hpp>
-
+class sf::Event;
 class EventManager;
-typedef std::shared_ptr<EventManager> EventManagerPtr;
 
 class EventObject
 {
@@ -13,7 +11,7 @@ private:
    EventObject() = delete;
 
 public:
-   EventObject(EventManagerPtr pEventManager);
+   EventObject(std::shared_ptr<EventManager> pEventManager);
    ~EventObject() = default;
 
    virtual bool CheckEvent(const sf::Event& event) const = 0;

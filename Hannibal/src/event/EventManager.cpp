@@ -1,4 +1,7 @@
-#include "EventManager.h"
+#include <Window.h>
+
+#include <event/EventManager.h>
+#include <event/EventObject.h>
 
 EventManager::EventManager() :
    m_event()

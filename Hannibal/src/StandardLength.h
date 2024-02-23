@@ -2,9 +2,6 @@
 
 #include <Constants.h>
 
-class StandardLength;
-typedef std::shared_ptr<StandardLength> StandardLengthPtr;
-
 class StandardLength
 {
 private:

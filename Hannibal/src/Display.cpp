@@ -1,8 +1,8 @@
-#include "Display.h"
-
-#include <SFML/System/Vector2.hpp>
-
+#include <Display.h>
 #include <Grid.h>
+#include <Window.h>
+
+#include <event/EventManager.h>
 
 Display::Display() :
    m_window(Window::Get()),

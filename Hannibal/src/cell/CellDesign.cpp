@@ -1,6 +1,6 @@
-#include "CellDesign.h"
-
 #include <Window.h>
+
+#include <cell/CellDesign.h>
 
 CellDesign::CellDesign(sf::Vector2f topLeft, sf::Vector2f botRight) :
    CellDesign(topLeft, botRight, sf::Color::Black, sf::Color::White, 1)

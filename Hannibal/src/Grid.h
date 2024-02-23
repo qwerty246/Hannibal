@@ -3,18 +3,23 @@
 #include <vector>
 
 #include <Constants.h>
-#include <cell/Cell.h>
+
+#include <SFML/Graphics.hpp>
+
+class Cell;
+class EventManager;
+class sf::Color;
 
 class Grid
 {
 public:
-   Grid(EventManagerPtr pEventManager, uint horizontalNum, uint verticalNum, const sf::Color& colorLine, const sf::Color& colorBackround);
+   Grid(std::shared_ptr<EventManager> pEventManager, uint horizontalNum, uint verticalNum, const sf::Color& colorLine, const sf::Color& colorBackround);
    ~Grid() = default;
 
    void CreateGrid();
    void Show();
 private:
-   EventManagerPtr m_pEventManager;
+   std::shared_ptr<EventManager> m_pEventManager;
 
    const uint m_horizontalNum;
    const uint m_verticalNum;

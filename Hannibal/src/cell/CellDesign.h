@@ -2,8 +2,7 @@
 
 #include <Constants.h>
 
-class CellDesign;
-typedef std::shared_ptr<CellDesign> CellDesignPtr;
+#include <SFML/Graphics.hpp>
 
 class CellDesign
 {

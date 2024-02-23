@@ -1,5 +1,3 @@
-#include <SFML/Graphics.hpp>
-
 #include <Display.h>
 #include <StandardLength.h>
 
