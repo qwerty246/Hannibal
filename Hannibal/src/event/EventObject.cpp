@@ -1,7 +1,7 @@
 #include <event/EventManager.h>
 #include <event/EventObject.h>
 
-EventObject::EventObject(std::shared_ptr<EventManager> pEventManager)
+EventObject::EventObject(EventManagerPtr pEventManager) :
+   m_pEventManager(pEventManager)
 {
-   pEventManager->RegisterEventObject(this);
 }

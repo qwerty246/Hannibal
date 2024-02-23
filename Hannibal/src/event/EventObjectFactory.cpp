@@ -2,19 +2,25 @@
 #include <event/EventManager.h>
 #include <event/EventObjectFactory.h>
 
-EventObject* EventObjectFactory::CreateCell(std::shared_ptr<EventManager> pEventManager, sf::Vector2f topLeft, sf::Vector2f botRight)
+EventObjectPtr EventObjectFactory::CreateCell(EventManagerPtr pEventManager, sf::Vector2f topLeft, sf::Vector2f botRight)
 {
-   return new Cell(pEventManager, topLeft, botRight);
+   auto pCell = std::make_shared<Cell>(Cell(pEventManager, topLeft, botRight));
+   pEventManager->RegisterEventObject(pCell);
+   return pCell;
 }
 
-EventObject* EventObjectFactory::CreateCell(std::shared_ptr<EventManager> pEventManager, sf::Vector2f topLeft, sf::Vector2f botRight,
-                                            sf::Color colorLine, sf::Color colorArea)
+EventObjectPtr EventObjectFactory::CreateCell(EventManagerPtr pEventManager, sf::Vector2f topLeft, sf::Vector2f botRight,
+                                              sf::Color colorLine, sf::Color colorArea)
 {
-   return new Cell(pEventManager, topLeft, botRight, colorLine, colorArea);
+   auto pCell = std::make_shared<Cell>(Cell(pEventManager, topLeft, botRight, colorLine, colorArea));
+   pEventManager->RegisterEventObject(pCell);
+   return pCell;
 }
 
-EventObject* EventObjectFactory::CreateCell(std::shared_ptr<EventManager> pEventManager, sf::Vector2f topLeft, sf::Vector2f botRight,
-                                            sf::Color colorLine, sf::Color colorArea, float thickness)
+EventObjectPtr EventObjectFactory::CreateCell(EventManagerPtr pEventManager, sf::Vector2f topLeft, sf::Vector2f botRight,
+                                              sf::Color colorLine, sf::Color colorArea, float thickness)
 {
-   return new Cell(pEventManager, topLeft, botRight, colorLine, colorArea, thickness);
+   auto pCell = std::make_shared<Cell>(Cell(pEventManager, topLeft, botRight, colorLine, colorArea, thickness));
+   pEventManager->RegisterEventObject(pCell);
+   return pCell;
 }

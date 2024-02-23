@@ -2,13 +2,11 @@
 
 #include <memory>
 
-#include <Constants.h>
+#include <helpers/constants.h>
+#include <helpers/registeringPointers.h>
+#include <SFML/Graphics.hpp>
 
-#include <SFML/Graphics/Color.hpp>
-
-class EventManager;
 class Window;
-class sf::Color;
 
 class Display
 {
@@ -25,7 +23,7 @@ public:
 
 private:
    Window& m_window;
-   std::shared_ptr<EventManager> m_pEventManager;
+   EventManagerPtr m_pEventManager;
    const sf::Color m_colorBackround;
 };
 

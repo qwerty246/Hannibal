@@ -1,31 +1,32 @@
 #pragma once
 
-#include <cell/CellDesign.h>
-#include <event/EventObjectFactory.h>
+#include <memory>
 
-class EventManager;
+#include <cell/CellDesign.h>
+#include <event/EventObject.h>
+#include <helpers/registeringPointers.h>
+#include <SFML/Graphics.hpp>
 
 class Cell : public EventObject
 {
-   friend class EventObjectFactory;
+public:
+   Cell(EventManagerPtr pEventManager, sf::Vector2f topLeft, sf::Vector2f botRight);
 
-private:
-   Cell(std::shared_ptr<EventManager> pEventManager, sf::Vector2f topLeft, sf::Vector2f botRight);
-
-   Cell(std::shared_ptr<EventManager> pEventManager, sf::Vector2f topLeft, sf::Vector2f botRight,
+   Cell(EventManagerPtr pEventManager, sf::Vector2f topLeft, sf::Vector2f botRight,
         sf::Color colorLine, sf::Color colorArea);
 
-   Cell(std::shared_ptr<EventManager> pEventManager, sf::Vector2f topLeft, sf::Vector2f botRight,
+   Cell(EventManagerPtr pEventManager, sf::Vector2f topLeft, sf::Vector2f botRight,
         sf::Color colorLine, sf::Color colorArea, float thickness);
 
    ~Cell() = default;
 public:
    void Draw();
-   void CreateSubCellDesign(std::shared_ptr<CellDesign> pCellDesign);
+   void CreateSubCellDesign(CellDesignPtr pCellDesign);
 
-   bool CheckEvent(const sf::Event& event) const;
+   bool CheckEvent(const sf::Event& event) const override;
+   void DeletionRequest() const override;
 private:
-   std::shared_ptr<CellDesign> m_pCellDesign;
-   std::shared_ptr<CellDesign> m_pSubCellDesign;
+   CellDesignPtr m_pCellDesign;
+   CellDesignPtr m_pSubCellDesign;
 };
 
