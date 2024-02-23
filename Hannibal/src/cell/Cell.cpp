@@ -19,6 +19,7 @@ Cell::Cell(EventManagerPtr pEventManager, sf::Vector2f topLeft, sf::Vector2f bot
    m_pCellDesign(new CellDesign(topLeft, botRight, colorLine, colorArea, thickness)),
    m_pSubCellDesign(nullptr)
 {
+   m_eventTypes.push_back(sf::Event::EventType::MouseButtonPressed);
 }
 
 void Cell::Draw()

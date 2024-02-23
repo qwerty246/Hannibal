@@ -31,5 +31,12 @@ void EventManager::RunAllEvents()
 
 void EventManager::RegisterEventObject(EventObjectPtr pEventObject)
 {
-
+   for (auto it : pEventObject->GetEventTypes())
+   {
+      auto eventList = m_eventObjectLists.find(it);
+      if (eventList != m_eventObjectLists.end())
+      {
+         eventList->second.push_back(pEventObject);
+      }
+   }
 }
