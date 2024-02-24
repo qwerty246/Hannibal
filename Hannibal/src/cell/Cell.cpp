@@ -36,9 +36,19 @@ void Cell::CreateSubCellDesign(CellDesignPtr pCellDesign)
    m_pSubCellDesign = pCellDesign;
 }
 
-bool Cell::CheckEvent(const sf::Event& event) const
+void Cell::RunEvent(const sf::Event& event) const
 {
-   return m_pCellDesign->IsInside(event.mouseMove);
+   for (auto type : m_eventTypes)
+   {
+      if (type == event.type)
+      {
+         if (m_pCellDesign->IsInside(event.mouseButton))
+         {
+            m_pSubCellDesign->SetFillColor(sf::Color::Red);
+         }
+         return;
+      }
+   }
 }
 
 void Cell::DeletionRequest()

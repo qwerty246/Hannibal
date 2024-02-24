@@ -15,7 +15,7 @@ public:
    EventObject(EventManagerPtr pEventManager);
    ~EventObject() = default;
 
-   virtual bool CheckEvent(const sf::Event& event) const = 0;
+   virtual void RunEvent(const sf::Event& event) const = 0;
    virtual void DeletionRequest() = 0;
 
 public:

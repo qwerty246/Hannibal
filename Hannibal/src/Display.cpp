@@ -18,14 +18,15 @@ void Display::Show()
    grid.CreateGrid();
    while (m_window.isOpen())
    {
-      m_window.clear(m_colorBackround);
-      grid.Show();
       while (m_pEventManager->PollEvent(m_window))
       {
          EventClosed();
          EventResized();
+
          m_pEventManager->RunAllEvents();
       }
+      m_window.clear(m_colorBackround);
+      grid.Show();
       m_window.display();
    }
 }

@@ -12,9 +12,10 @@ public:
 
    void Draw();
 
-   virtual bool IsInside(const sf::Event::MouseMoveEvent& mouseMove) const;
+   bool IsInside(const sf::Event::MouseButtonEvent& mouseButton) const;
    const sf::Vector2f& GetTopLeft() const;
    const sf::Vector2f& GetBotRight() const;
+   void SetFillColor(const sf::Color& color);
 private:
    sf::Vector2f m_topLeft;
    sf::Vector2f m_botRight;
@@ -22,5 +23,7 @@ private:
    float m_thickness;
    sf::Color m_colorEdge;
    sf::Color m_colorArea;
+
+   sf::RectangleShape m_rectangle;
 };
 

@@ -25,7 +25,7 @@ void EventManager::RunAllEvents()
    {
       for (auto eventObject : eventObjectList.second)
       {
-         eventObject->CheckEvent(m_event);
+         eventObject->RunEvent(m_event);
       }
    }
 
@@ -34,10 +34,16 @@ void EventManager::RunAllEvents()
 
 void EventManager::RegisterEventObject(EventObjectPtr pEventObject)
 {
-   for (auto it : pEventObject->GetEventTypes())
+   for (auto eventType : pEventObject->GetEventTypes())
    {
-      auto eventList = m_eventObjectLists.find(it);
-      if (eventList != m_eventObjectLists.end())
+      auto eventList = m_eventObjectLists.find(eventType);
+      if (eventList == m_eventObjectLists.end())
+      {
+         std::list<EventObjectPtr> eventObjects{ pEventObject };
+         auto pair = std::make_pair(eventType , eventObjects);
+         m_eventObjectLists.emplace(pair);
+      }
+      else
       {
          eventList->second.push_back(pEventObject);
       }

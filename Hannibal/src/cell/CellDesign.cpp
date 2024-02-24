@@ -25,20 +25,19 @@ CellDesign::CellDesign(sf::Vector2f topLeft, sf::Vector2f botRight, sf::Color co
 
 void CellDesign::Draw()
 {
-   sf::RectangleShape rectangle({ m_botRight.x - m_topLeft.x, m_botRight.y - m_topLeft.y });
-   rectangle.setPosition(m_topLeft);
-   rectangle.setOutlineThickness(m_thickness);
-   rectangle.setOutlineColor(m_colorEdge);
-   rectangle.setFillColor(m_colorArea);
-   Window::Get().draw(rectangle);
+   m_rectangle.setSize({ m_botRight.x - m_topLeft.x, m_botRight.y - m_topLeft.y });
+   m_rectangle.setPosition(m_topLeft);
+   m_rectangle.setOutlineThickness(m_thickness);
+   m_rectangle.setOutlineColor(m_colorEdge);
+   Window::Get().draw(m_rectangle);
 }
 
-bool CellDesign::IsInside(const sf::Event::MouseMoveEvent& mouseMove) const
+bool CellDesign::IsInside(const sf::Event::MouseButtonEvent& mouseButton) const
 {
-   if (mouseMove.x < m_topLeft.x ||
-       mouseMove.x > m_botRight.x ||
-       mouseMove.y < m_topLeft.y ||
-       mouseMove.y > m_botRight.y)
+   if (mouseButton.x < m_topLeft.x ||
+       mouseButton.x > m_botRight.x ||
+       mouseButton.y < m_topLeft.y ||
+       mouseButton.y > m_botRight.y)
    {
       return false;
    }
@@ -53,4 +52,10 @@ const sf::Vector2f& CellDesign::GetTopLeft() const
 const sf::Vector2f& CellDesign::GetBotRight() const
 {
    return m_botRight;
+}
+
+void CellDesign::SetFillColor(const sf::Color& color)
+{
+   m_colorArea = color;
+   m_rectangle.setFillColor(m_colorArea);
 }
