@@ -14,6 +14,7 @@ public:
 
    void CreateGrid();
    void Show();
+   void ClearCells();
 private:
    EventManagerPtr m_pEventManager;
 

@@ -24,6 +24,7 @@ void Display::Show()
       {
          EventClosed();
          EventResized();
+         m_pEventManager->RunAllEvents();
       }
       m_window.display();
    }

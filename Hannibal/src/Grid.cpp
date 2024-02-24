@@ -18,8 +18,6 @@ Grid::Grid(EventManagerPtr pEventManager, uint horizontalNum, uint verticalNum, 
 
 void Grid::CreateGrid()
 {
-   m_cells.clear();
-
    auto windowSize = Window::Get().getSize();
    float length = static_cast<float>(StandardLength::Get());
 
@@ -56,4 +54,13 @@ void Grid::Show()
    {
       i->Draw();
    }
+}
+
+void Grid::ClearCells()
+{
+   for (auto i : m_cells)
+   {
+      i->DeletionRequest();
+   }
+   m_cells.clear();
 }

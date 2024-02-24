@@ -24,7 +24,7 @@ public:
    void CreateSubCellDesign(CellDesignPtr pCellDesign);
 
    bool CheckEvent(const sf::Event& event) const override;
-   void DeletionRequest() const override;
+   void DeletionRequest() override;
 private:
    CellDesignPtr m_pCellDesign;
    CellDesignPtr m_pSubCellDesign;

@@ -16,13 +16,15 @@ public:
    ~EventObject() = default;
 
    virtual bool CheckEvent(const sf::Event& event) const = 0;
-   virtual void DeletionRequest() const = 0;
+   virtual void DeletionRequest() = 0;
 
 public:
    const std::vector<sf::Event::EventType>& GetEventTypes() const;
+   bool NeedToDeleteEventObjects() const;
 
 protected:
-   std::weak_ptr<EventManager> m_pEventManager;
+   std::shared_ptr<EventManager> m_pEventManager;
    std::vector<sf::Event::EventType> m_eventTypes;
+   bool m_needToDeleteEventObjects;
 };
 

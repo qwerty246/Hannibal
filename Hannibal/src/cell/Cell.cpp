@@ -41,7 +41,8 @@ bool Cell::CheckEvent(const sf::Event& event) const
    return m_pCellDesign->IsInside(event.mouseMove);
 }
 
-void Cell::DeletionRequest() const
+void Cell::DeletionRequest()
 {
-
+   m_pEventManager->DeletionRequest(m_eventTypes);
+   m_needToDeleteEventObjects = true;
 }
