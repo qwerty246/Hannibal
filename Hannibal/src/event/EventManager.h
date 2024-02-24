@@ -28,6 +28,6 @@ private:
 private:
    sf::Event m_event;
    std::map<sf::Event::EventType, std::list<EventObjectPtr>> m_eventObjectLists;
-   std::vector<sf::Event::EventType> eventTypesToDeletion;
+   std::vector<sf::Event::EventType> m_eventTypesToDeletion;
 };
 

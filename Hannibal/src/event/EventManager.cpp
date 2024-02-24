@@ -5,7 +5,7 @@
 
 EventManager::EventManager() :
    m_event(),
-   eventTypesToDeletion()
+   m_eventTypesToDeletion()
 {
 }
 
@@ -64,25 +64,25 @@ void EventManager::DeletionRequest(const std::vector<sf::Event::EventType>& even
 {
    for (auto typeToDeletion : eventTypes)
    {
-      bool needToaAdd = true;
-      for (auto type : eventTypesToDeletion)
+      bool needToAdd = true;
+      for (auto type : m_eventTypesToDeletion)
       {
          if (typeToDeletion == type)
          {
-            needToaAdd = false;
+            needToAdd = false;
             break;
          }
       }
-      if (needToaAdd)
+      if (needToAdd)
       {
-         eventTypesToDeletion.push_back(typeToDeletion);
+         m_eventTypesToDeletion.push_back(typeToDeletion);
       }
    }
 }
 
 void EventManager::ClearEventObjectTypes()
 {
-   for (auto type : eventTypesToDeletion)
+   for (auto type : m_eventTypesToDeletion)
    {
       auto it = m_eventObjectLists.find(type);
       if (it != m_eventObjectLists.end())
