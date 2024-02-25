@@ -2,21 +2,10 @@
 #include <cell/CellDesign.h>
 #include <event/EventManager.h>
 
-Cell::Cell(EventManagerPtr pEventManager, sf::Vector2f topLeft, sf::Vector2f botRight) :
-   Cell(pEventManager, topLeft, botRight, sf::Color::Black, sf::Color::White, 1)
-{
-}
-
 Cell::Cell(EventManagerPtr pEventManager, sf::Vector2f topLeft, sf::Vector2f botRight,
-           sf::Color colorLine, sf::Color colorArea) :
-   Cell(pEventManager, topLeft, botRight, colorLine, colorArea, 1)
-{
-}
-
-Cell::Cell(EventManagerPtr pEventManager, sf::Vector2f topLeft, sf::Vector2f botRight,
-           sf::Color colorLine, sf::Color colorArea, float thickness) :
+           sf::Color colorArea, sf::Color colorOutline, float outlineThickness) :
    EventObject(pEventManager),
-   m_pCellDesign(new CellDesign(topLeft, botRight, colorLine, colorArea, thickness)),
+   m_pCellDesign(new CellDesign(topLeft, botRight, colorArea, colorOutline, outlineThickness)),
    m_pSubCellDesign(nullptr)
 {
    m_eventTypes.push_back(sf::Event::EventType::MouseButtonPressed);

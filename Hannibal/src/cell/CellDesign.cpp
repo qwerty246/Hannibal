@@ -2,31 +2,18 @@
 
 #include <cell/CellDesign.h>
 
-CellDesign::CellDesign(sf::Vector2f topLeft, sf::Vector2f botRight) :
-   CellDesign(topLeft, botRight, sf::Color::Black, sf::Color::White, 1)
-{
-}
-
-CellDesign::CellDesign(sf::Vector2f topLeft, sf::Vector2f botRight, sf::Color colorEdge, sf::Color colorArea) :
-   CellDesign(topLeft, botRight, colorEdge, colorArea, 1)
-{
-}
-
-CellDesign::CellDesign(sf::Vector2f topLeft, sf::Vector2f botRight, sf::Color colorEdge, sf::Color colorArea, float thickness) :
+CellDesign::CellDesign(sf::Vector2f topLeft, sf::Vector2f botRight, sf::Color colorArea, sf::Color colorOutline, float outlineThickness) :
    m_topLeft(),
-   m_botRight(),
-   m_thickness(thickness),
-   m_colorEdge(colorEdge),
-   m_colorArea(colorArea)
+   m_botRight()
 {
-   m_topLeft = { topLeft.x + thickness, topLeft.y + thickness };
-   m_botRight = { botRight.x - thickness, botRight.y - thickness };
+   m_topLeft = { topLeft.x + outlineThickness, topLeft.y + outlineThickness };
+   m_botRight = { botRight.x - outlineThickness, botRight.y - outlineThickness };
 
    m_rectangle.setSize({ m_botRight.x - m_topLeft.x, m_botRight.y - m_topLeft.y });
    m_rectangle.setPosition(m_topLeft);
-   m_rectangle.setFillColor(m_colorArea);
-   m_rectangle.setOutlineThickness(m_thickness);
-   m_rectangle.setOutlineColor(m_colorEdge);
+   m_rectangle.setFillColor(colorArea);
+   m_rectangle.setOutlineColor(colorOutline);
+   m_rectangle.setOutlineThickness(outlineThickness);
 }
 
 void CellDesign::Draw()
@@ -58,6 +45,5 @@ const sf::Vector2f& CellDesign::GetBotRight() const
 
 void CellDesign::SetFillColor(const sf::Color& color)
 {
-   m_colorArea = color;
-   m_rectangle.setFillColor(m_colorArea);
+   m_rectangle.setFillColor(color);
 }

@@ -35,11 +35,11 @@ void GridLayer::CreateGrid()
          sf::Vector2f botRight(i + length, j + length);
          float thickness = 4;
 
-         auto cell = std::dynamic_pointer_cast<Cell>(m_eventObjectFactory.CreateCell(topLeft, botRight, m_colorBackround, m_colorLine, thickness));
+         auto cell = std::dynamic_pointer_cast<Cell>(m_eventObjectFactory.CreateCell(topLeft, botRight, m_colorLine, m_colorBackround, thickness));
 
          sf::Vector2f topSubLeft(i + thickness, j + thickness);
          sf::Vector2f botSubRight(i + length - thickness, j + length - thickness);
-         auto pSubCell = std::make_shared<CellDesign>(topSubLeft, botSubRight, m_colorLine, sf::Color::White, thickness - 2);
+         auto pSubCell = std::make_shared<CellDesign>(topSubLeft, botSubRight, sf::Color::White, m_colorLine, thickness - 2);
          cell->CreateSubCellDesign(pSubCell);
 
          m_cells.push_back(cell);

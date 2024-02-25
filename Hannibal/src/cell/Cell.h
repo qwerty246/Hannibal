@@ -10,13 +10,8 @@
 class Cell : public EventObject
 {
 public:
-   Cell(EventManagerPtr pEventManager, sf::Vector2f topLeft, sf::Vector2f botRight);
-
    Cell(EventManagerPtr pEventManager, sf::Vector2f topLeft, sf::Vector2f botRight,
-        sf::Color colorLine, sf::Color colorArea);
-
-   Cell(EventManagerPtr pEventManager, sf::Vector2f topLeft, sf::Vector2f botRight,
-        sf::Color colorLine, sf::Color colorArea, float thickness);
+        sf::Color colorArea, sf::Color colorOutline, float outlineThickness);
 
    ~Cell();
 

@@ -6,9 +6,7 @@
 class CellDesign
 {
 public:
-   CellDesign(sf::Vector2f topLeft, sf::Vector2f botRight);
-   CellDesign(sf::Vector2f topLeft, sf::Vector2f botRight, sf::Color colorEdge, sf::Color colorArea);
-   CellDesign(sf::Vector2f topLeft, sf::Vector2f botRight, sf::Color colorEdge, sf::Color colorArea, float thickness);
+   CellDesign(sf::Vector2f topLeft, sf::Vector2f botRight, sf::Color colorArea, sf::Color colorOutline, float outlineThickness);
 
    void Draw();
 
@@ -20,10 +18,6 @@ public:
 private:
    sf::Vector2f m_topLeft;
    sf::Vector2f m_botRight;
-
-   float m_thickness;
-   sf::Color m_colorEdge;
-   sf::Color m_colorArea;
 
    sf::RectangleShape m_rectangle;
 };
