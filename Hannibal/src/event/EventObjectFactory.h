@@ -3,13 +3,24 @@
 #include <memory>
 
 #include <helpers/constants.h>
+#include <helpers/registeringPointers.h>
 #include <SFML/Graphics.hpp>
 
 class EventObjectFactory
 {
 public:
-   static EventObjectPtr CreateCell(EventManagerPtr pEventManager, sf::Vector2f topLeft, sf::Vector2f botRight);
-   static EventObjectPtr CreateCell(EventManagerPtr pEventManager, sf::Vector2f topLeft, sf::Vector2f botRight, sf::Color colorLine, sf::Color colorArea);
-   static EventObjectPtr CreateCell(EventManagerPtr pEventManager, sf::Vector2f topLeft, sf::Vector2f botRight, sf::Color colorLine, sf::Color colorArea, float thickness);
+   EventObjectFactory(EventManagerPtr pEventManager);
+
+public:
+   EventObjectPtr CreateCell(sf::Vector2f topLeft, sf::Vector2f botRight);
+
+   EventObjectPtr CreateCell(sf::Vector2f topLeft, sf::Vector2f botRight,
+                             sf::Color colorLine, sf::Color colorArea);
+
+   EventObjectPtr CreateCell(sf::Vector2f topLeft, sf::Vector2f botRight,
+                             sf::Color colorLine, sf::Color colorArea, float thickness);
+
+private:
+   EventManagerPtr m_pEventManager;
 };
 

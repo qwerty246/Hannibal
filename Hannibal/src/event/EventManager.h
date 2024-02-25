@@ -15,17 +15,19 @@ public:
    EventManager();
    ~EventManager() = default;
 
-   const sf::Event& GetEvent() const;
    bool PollEvent(Window& window);
    void RunAllEvents();
    void RegisterEventObject(EventObjectPtr pEventObject);
-   void ClearEventObjectList(sf::Event::EventType eventType);
+   void ClearEventObjectLists();
    void DeletionRequest(const std::vector<sf::Event::EventType>& eventTypes);
 
 private:
+   void EventClosed();
+   void EventResized();
    void ClearEventObjectTypes();
 
 private:
+   Window& m_window;
    sf::Event m_event;
    std::map<sf::Event::EventType, std::list<EventObjectPtr>> m_eventObjectLists;
    std::vector<sf::Event::EventType> m_eventTypesToDeletion;

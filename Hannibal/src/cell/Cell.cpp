@@ -22,6 +22,11 @@ Cell::Cell(EventManagerPtr pEventManager, sf::Vector2f topLeft, sf::Vector2f bot
    m_eventTypes.push_back(sf::Event::EventType::MouseButtonPressed);
 }
 
+Cell::~Cell()
+{
+   DeletionRequest();
+}
+
 void Cell::Draw()
 {
    m_pCellDesign->Draw();

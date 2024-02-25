@@ -16,11 +16,6 @@ public:
 
    void Show();
 
-   void EventClosed();
-   void EventResized();
-
-   //void DrawGrid();
-
 private:
    Window& m_window;
    EventManagerPtr m_pEventManager;

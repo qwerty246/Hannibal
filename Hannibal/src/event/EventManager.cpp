@@ -4,14 +4,10 @@
 #include <event/EventObject.h>
 
 EventManager::EventManager() :
+   m_window(Window::Get()),
    m_event(),
    m_eventTypesToDeletion()
 {
-}
-
-const sf::Event& EventManager::GetEvent() const
-{
-   return m_event;
 }
 
 bool EventManager::PollEvent(Window& window)
@@ -21,6 +17,9 @@ bool EventManager::PollEvent(Window& window)
 
 void EventManager::RunAllEvents()
 {
+   EventClosed();
+   EventResized();
+
    for (auto eventObjectList : m_eventObjectLists)
    {
       for (auto eventObject : eventObjectList.second)
@@ -50,14 +49,9 @@ void EventManager::RegisterEventObject(EventObjectPtr pEventObject)
    }
 }
 
-void EventManager::ClearEventObjectList(sf::Event::EventType eventType)
+void EventManager::ClearEventObjectLists()
 {
-   auto it = m_eventObjectLists.find(eventType);
-   if (it != m_eventObjectLists.end())
-   {
-      it->second.clear();
-      m_eventObjectLists.erase(it);
-   }
+   m_eventObjectLists.clear();
 }
 
 void EventManager::DeletionRequest(const std::vector<sf::Event::EventType>& eventTypes)
@@ -77,6 +71,23 @@ void EventManager::DeletionRequest(const std::vector<sf::Event::EventType>& even
       {
          m_eventTypesToDeletion.push_back(typeToDeletion);
       }
+   }
+}
+
+void EventManager::EventClosed()
+{
+   if (m_event.type == sf::Event::Closed)
+   {
+      m_window.close();
+   }
+}
+
+void EventManager::EventResized()
+{
+   if (m_event.type == sf::Event::Resized)
+   {
+      sf::FloatRect view(0, 0, static_cast<float>(m_event.size.width), static_cast<float>(m_event.size.height));
+      m_window.setView(sf::View(view));
    }
 }
 

@@ -2,21 +2,24 @@
 
 #include <vector>
 
+#include <event/EventObjectFactory.h>
 #include <helpers/constants.h>
 #include <helpers/registeringPointers.h>
 #include <SFML/Graphics.hpp>
 
-class Grid
+class GridLayer
 {
 public:
-   Grid(EventManagerPtr pEventManager, uint horizontalNum, uint verticalNum, const sf::Color& colorLine, const sf::Color& colorBackround);
-   ~Grid() = default;
+   GridLayer(EventManagerPtr pEventManager, uint horizontalNum, uint verticalNum, const sf::Color& colorLine, const sf::Color& colorBackround);
+   ~GridLayer() = default;
 
-   void CreateGrid();
    void Show();
-   void ClearCells();
+
 private:
-   EventManagerPtr m_pEventManager;
+   void CreateGrid();
+
+private:
+   EventObjectFactory m_eventObjectFactory;
 
    const uint m_horizontalNum;
    const uint m_verticalNum;
