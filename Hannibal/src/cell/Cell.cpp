@@ -49,7 +49,10 @@ void Cell::RunEvent(const sf::Event& event) const
       {
          if (m_pCellDesign->IsInside(event.mouseButton))
          {
-            m_pSubCellDesign->SetFillColor(sf::Color::Red);
+            if (m_pSubCellDesign)
+            {
+               m_pSubCellDesign->SetFillColor(sf::Color::Red);
+            }
          }
          return;
       }

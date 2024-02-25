@@ -21,14 +21,16 @@ CellDesign::CellDesign(sf::Vector2f topLeft, sf::Vector2f botRight, sf::Color co
 {
    m_topLeft = { topLeft.x + thickness, topLeft.y + thickness };
    m_botRight = { botRight.x - thickness, botRight.y - thickness };
+
+   m_rectangle.setSize({ m_botRight.x - m_topLeft.x, m_botRight.y - m_topLeft.y });
+   m_rectangle.setPosition(m_topLeft);
+   m_rectangle.setFillColor(m_colorArea);
+   m_rectangle.setOutlineThickness(m_thickness);
+   m_rectangle.setOutlineColor(m_colorEdge);
 }
 
 void CellDesign::Draw()
 {
-   m_rectangle.setSize({ m_botRight.x - m_topLeft.x, m_botRight.y - m_topLeft.y });
-   m_rectangle.setPosition(m_topLeft);
-   m_rectangle.setOutlineThickness(m_thickness);
-   m_rectangle.setOutlineColor(m_colorEdge);
    Window::Get().draw(m_rectangle);
 }
 

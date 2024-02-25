@@ -39,8 +39,7 @@ void GridLayer::CreateGrid()
 
          sf::Vector2f topSubLeft(i + thickness, j + thickness);
          sf::Vector2f botSubRight(i + length - thickness, j + length - thickness);
-         auto pSubCell = std::make_shared<CellDesign>(topSubLeft, botSubRight,
-            m_colorLine, sf::Color::White, thickness - 2);
+         auto pSubCell = std::make_shared<CellDesign>(topSubLeft, botSubRight, m_colorLine, sf::Color::White, thickness - 2);
          cell->CreateSubCellDesign(pSubCell);
 
          m_cells.push_back(cell);
