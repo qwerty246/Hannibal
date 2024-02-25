@@ -15,7 +15,7 @@ public:
    EventObject(EventManagerPtr pEventManager);
    ~EventObject() = default;
 
-   virtual void RunEvent(const sf::Event& event) const = 0;
+   virtual void RunEvent(const sf::Event& event) = 0;
 
 public:
    const std::vector<sf::Event::EventType>& GetEventTypes() const;

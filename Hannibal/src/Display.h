@@ -14,7 +14,7 @@ public:
    Display();
    ~Display() = default;
 
-   void Show();
+   void Show() const;
 
 private:
    Window& m_window;

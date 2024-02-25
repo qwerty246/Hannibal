@@ -16,9 +16,10 @@ public:
    void SetFillColor(const sf::Color& color);
 
 private:
+   sf::RectangleShape m_rectangle;
+
    sf::Vector2f m_topLeft;
    sf::Vector2f m_botRight;
-
-   sf::RectangleShape m_rectangle;
+   sf::Color m_colorOutline;
 };
 

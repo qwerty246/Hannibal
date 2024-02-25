@@ -11,14 +11,14 @@ Display::Display() :
 {
 }
 
-void Display::Show()
+void Display::Show() const
 {
    m_window.create(sf::VideoMode(1600, 800), "Hannibal", sf::Style::Default);
    GridLayer gridLayer(m_pEventManager, 15, 10, sf::Color::Black, m_colorBackround);
 
    while (m_window.isOpen())
    {
-      while (m_pEventManager->PollEvent(m_window))
+      while (m_pEventManager->PollEvent())
       {
          m_pEventManager->RunAllEvents();
       }

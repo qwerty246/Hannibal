@@ -10,9 +10,9 @@ EventManager::EventManager() :
 {
 }
 
-bool EventManager::PollEvent(Window& window)
+bool EventManager::PollEvent()
 {
-   return window.pollEvent(m_event);
+   return m_window.pollEvent(m_event);
 }
 
 void EventManager::RunAllEvents()
@@ -74,7 +74,7 @@ void EventManager::DeletionRequest(const std::vector<sf::Event::EventType>& even
    }
 }
 
-void EventManager::EventClosed()
+void EventManager::EventClosed() const
 {
    if (m_event.type == sf::Event::Closed)
    {
@@ -82,7 +82,7 @@ void EventManager::EventClosed()
    }
 }
 
-void EventManager::EventResized()
+void EventManager::EventResized() const
 {
    if (m_event.type == sf::Event::Resized)
    {

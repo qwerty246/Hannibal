@@ -8,7 +8,7 @@ EventObjectFactory::EventObjectFactory(EventManagerPtr pEventManager) :
 }
 
 EventObjectPtr EventObjectFactory::CreateCell(sf::Vector2f topLeft, sf::Vector2f botRight,
-                                              sf::Color colorLine, sf::Color colorArea, float thickness)
+                                              sf::Color colorLine, sf::Color colorArea, float thickness) const
 {
    auto pCell = std::make_shared<Cell>(Cell(m_pEventManager, topLeft, botRight, colorLine, colorArea, thickness));
    m_pEventManager->RegisterEventObject(pCell);

@@ -15,15 +15,15 @@ public:
    EventManager();
    ~EventManager() = default;
 
-   bool PollEvent(Window& window);
+   bool PollEvent();
    void RunAllEvents();
    void RegisterEventObject(EventObjectPtr pEventObject);
    void ClearEventObjectLists();
    void DeletionRequest(const std::vector<sf::Event::EventType>& eventTypes);
 
 private:
-   void EventClosed();
-   void EventResized();
+   void EventClosed() const;
+   void EventResized() const;
    void ClearEventObjectTypes();
 
 private:

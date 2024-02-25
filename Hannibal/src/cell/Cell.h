@@ -17,15 +17,12 @@ public:
 
 public:
    void Draw();
-   void CreateSubCellDesign(CellDesignPtr pCellDesign);
-
-   void RunEvent(const sf::Event& event) const override;
+   void RunEvent(const sf::Event& event) override;
 
 private:
    void DeletionRequest() override;
 
 private:
-   CellDesignPtr m_pCellDesign;
-   CellDesignPtr m_pSubCellDesign;
+   CellDesign m_cellDesign;
 };
 

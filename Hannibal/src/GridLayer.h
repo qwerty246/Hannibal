@@ -13,7 +13,7 @@ public:
    GridLayer(EventManagerPtr pEventManager, uint horizontalNum, uint verticalNum, const sf::Color& colorLine, const sf::Color& colorBackround);
    ~GridLayer() = default;
 
-   void Show();
+   void Show() const;
 
 private:
    void CreateGrid();

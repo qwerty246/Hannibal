@@ -3,12 +3,11 @@
 #include <cell/CellDesign.h>
 
 CellDesign::CellDesign(sf::Vector2f topLeft, sf::Vector2f botRight, sf::Color colorArea, sf::Color colorOutline, float outlineThickness) :
-   m_topLeft(),
-   m_botRight()
+   m_rectangle(),
+   m_topLeft(topLeft.x, topLeft.y),
+   m_botRight(botRight.x, botRight.y),
+   m_colorOutline(colorOutline)
 {
-   m_topLeft = { topLeft.x + outlineThickness, topLeft.y + outlineThickness };
-   m_botRight = { botRight.x - outlineThickness, botRight.y - outlineThickness };
-
    m_rectangle.setSize({ m_botRight.x - m_topLeft.x, m_botRight.y - m_topLeft.y });
    m_rectangle.setPosition(m_topLeft);
    m_rectangle.setFillColor(colorArea);
@@ -46,4 +45,5 @@ const sf::Vector2f& CellDesign::GetBotRight() const
 void CellDesign::SetFillColor(const sf::Color& color)
 {
    m_rectangle.setFillColor(color);
+   m_rectangle.setOutlineColor(m_colorOutline);
 }
