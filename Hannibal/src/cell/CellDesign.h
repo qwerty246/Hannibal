@@ -6,13 +6,12 @@
 class CellDesign
 {
 public:
-   CellDesign(sf::Vector2f topLeft, sf::Vector2f botRight, sf::Color colorArea, sf::Color colorOutline, float outlineThickness);
+   CellDesign(sf::Vector2f topLeft, sf::Vector2f botRight,
+              sf::Color fillColor, sf::Color outlineColor, float outlineThickness);
 
    void Draw();
 
-   bool IsInside(const sf::Event::MouseButtonEvent& mouseButton) const;
-   const sf::Vector2f& GetTopLeft() const;
-   const sf::Vector2f& GetBotRight() const;
+   bool IsInside() const;
    void SetFillColor(const sf::Color& color);
 
 private:

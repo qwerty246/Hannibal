@@ -1,6 +1,5 @@
 #include <Display.h>
-#include <GridLayer.h>
-#include <Window.h>
+#include <Battlefield.h>
 
 #include <event/EventManager.h>
 
@@ -14,7 +13,7 @@ Display::Display() :
 void Display::Show() const
 {
    m_window.create(sf::VideoMode(1600, 800), "Hannibal", sf::Style::Default);
-   GridLayer gridLayer(m_pEventManager, 15, 10, sf::Color::Black, m_colorBackround);
+   Battlefield battlefield(m_pEventManager, 15, 10, sf::Color::Black);
 
    while (m_window.isOpen())
    {
@@ -23,7 +22,7 @@ void Display::Show() const
          m_pEventManager->RunAllEvents();
       }
       m_window.clear(m_colorBackround);
-      gridLayer.Show();
+      battlefield.Show();
       m_window.display();
    }
 

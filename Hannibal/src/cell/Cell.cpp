@@ -2,9 +2,9 @@
 #include <event/EventManager.h>
 
 Cell::Cell(EventManagerPtr pEventManager, sf::Vector2f topLeft, sf::Vector2f botRight,
-           sf::Color colorArea, sf::Color colorOutline, float outlineThickness) :
+           sf::Color fillColor, sf::Color outlineColor, float outlineThickness) :
    EventObject(pEventManager),
-   m_cellDesign(topLeft, botRight, colorArea, colorOutline, outlineThickness)
+   m_cellDesign(topLeft, botRight, fillColor, outlineColor, outlineThickness)
 {
    m_eventTypes.push_back(sf::Event::EventType::MouseButtonPressed);
 }
@@ -25,7 +25,7 @@ void Cell::RunEvent(const sf::Event& event)
    {
       if (type == event.type)
       {
-         if (m_cellDesign.IsInside(event.mouseButton))
+         if (m_cellDesign.IsInside())
          {
             m_cellDesign.SetFillColor(sf::Color::Red);
          }

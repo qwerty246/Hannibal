@@ -5,8 +5,7 @@
 #include <helpers/constants.h>
 #include <helpers/registeringPointers.h>
 #include <SFML/Graphics.hpp>
-
-class Window;
+#include <Window.h>
 
 class Display
 {

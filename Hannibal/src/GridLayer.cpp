@@ -1,51 +1,44 @@
 #include <GridLayer.h>
 #include <StandardLength.h>
-#include <Window.h>
 
 #include <cell/Cell.h>
 #include <event/EventManager.h>
 
-GridLayer::GridLayer(EventManagerPtr pEventManager, uint horizontalNum, uint verticalNum, const sf::Color& colorLine, const sf::Color& colorBackround) :
-   m_eventObjectFactory(pEventManager),
-   m_horizontalNum(horizontalNum),
-   m_verticalNum(verticalNum),
-   m_colorLine(colorLine),
-   m_colorBackround(colorBackround),
-   m_cells()
+GridLayer::GridLayer() :
+   m_window(Window::Get()),
+   m_rectangle(),
+   m_lines()
 {
-   CreateGrid();
 }
 
-void GridLayer::CreateGrid()
+void GridLayer::CreateGridLayer(float cellLength, uint horizontalNum, uint verticalNum,
+                                sf::Color fillColor, sf::Color colorLine, float lineThickness)
 {
-   auto windowSize = Window::Get().getSize();
-   float length = static_cast<float>(StandardLength::Get());
+   sf::Vector2f center = m_window.GetCenter();
+   sf::Vector2f offset = { cellLength * horizontalNum / 2, cellLength * verticalNum / 2 };
+   sf::Vector2f topLeft = sf::Vector2f(center.x - offset.x, center.y - offset.y);
+   sf::Vector2f botRight = sf::Vector2f(center.x + offset.x, center.y + offset.y);
 
-   float centerX = static_cast<float>(windowSize.x / 2);
-   float centerY = static_cast<float>(windowSize.y / 2);
+   SetRectangle(topLeft, botRight, fillColor, colorLine, lineThickness);
+}
 
-   float offsetX = length * m_horizontalNum / 2;
-   float offsetY = length * m_verticalNum / 2;
+void GridLayer::Draw() const
+{
+   m_window.draw(m_rectangle);
 
-   for (float i = centerX - offsetX; i < centerX + offsetX; i += length)
+   for (auto line : m_lines)
    {
-      for (float j = centerY - offsetY; j < centerY + offsetY; j += length)
-      {
-         float outlineThickness = 2;
-         float space = 2;
-         sf::Vector2f topLeft(i + outlineThickness + space, j + outlineThickness + space);
-         sf::Vector2f botRight(i + length - (outlineThickness + space), j + length - (outlineThickness + space));
-
-         auto cell = std::dynamic_pointer_cast<Cell>(m_eventObjectFactory.CreateCell(topLeft, botRight, sf::Color::White, m_colorLine, outlineThickness));
-         m_cells.push_back(cell);
-      }
+      sf::Vertex sfLine[2] = { line.first, line.second };
+      m_window.draw(sfLine, 2, sf::Lines);
    }
 }
 
-void GridLayer::Show() const
+void GridLayer::SetRectangle(const sf::Vector2f& topLeft, const sf::Vector2f& botRight,
+                             const sf::Color& fillColor, const sf::Color& colorLine, float lineThickness)
 {
-   for (auto i : m_cells)
-   {
-      i->Draw();
-   }
+   m_rectangle.setSize({ botRight.x - topLeft.x, botRight.y - topLeft.y });
+   m_rectangle.setPosition(topLeft);
+   m_rectangle.setFillColor(fillColor);
+   m_rectangle.setOutlineColor(colorLine);
+   m_rectangle.setOutlineThickness(lineThickness);
 }

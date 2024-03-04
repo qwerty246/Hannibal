@@ -12,5 +12,7 @@ private:
 
 public:
    static Window& Get();
+   static sf::Vector2f GetMouseWorldPos();
+   sf::Vector2f GetCenter() const;
 };
 

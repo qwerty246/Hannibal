@@ -2,30 +2,28 @@
 
 #include <vector>
 
-#include <event/EventObjectFactory.h>
 #include <helpers/constants.h>
 #include <helpers/registeringPointers.h>
 #include <SFML/Graphics.hpp>
+#include <Window.h>
 
 class GridLayer
 {
 public:
-   GridLayer(EventManagerPtr pEventManager, uint horizontalNum, uint verticalNum, const sf::Color& colorLine, const sf::Color& colorBackround);
+   GridLayer();
    ~GridLayer() = default;
 
-   void Show() const;
+   void CreateGridLayer(float cellLength, uint horizontalNum, uint verticalNum,
+                        sf::Color fillColor, sf::Color colorLine, float lineThickness);
+   void Draw() const;
 
 private:
-   void CreateGrid();
+   void SetRectangle(const sf::Vector2f& topLeft, const sf::Vector2f& botRight,
+                     const sf::Color& fillColor, const sf::Color& colorLine, float lineThickness);
 
 private:
-   EventObjectFactory m_eventObjectFactory;
-
-   const uint m_horizontalNum;
-   const uint m_verticalNum;
-   const sf::Color m_colorLine;
-   const sf::Color m_colorBackround;
-
-   std::vector<CellPtr> m_cells;
+   Window& m_window;
+   sf::RectangleShape m_rectangle;
+   std::vector<std::pair<sf::Vertex, sf::Vertex>> m_lines;
 };
 

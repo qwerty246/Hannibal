@@ -1,5 +1,3 @@
-#include <Window.h>
-
 #include <event/EventManager.h>
 #include <event/EventObject.h>
 
@@ -86,8 +84,22 @@ void EventManager::EventResized() const
 {
    if (m_event.type == sf::Event::Resized)
    {
-      sf::FloatRect view(0, 0, static_cast<float>(m_event.size.width), static_cast<float>(m_event.size.height));
-      m_window.setView(sf::View(view));
+      //sf::FloatRect view(0, 0, static_cast<float>(m_event.size.width), static_cast<float>(m_event.size.height));
+      //m_window.setView(sf::View(view));
+
+      //sf::View view = m_window.getView();
+      //auto oldCenter = view.getCenter();
+      //view.setSize({ static_cast<float>(m_event.size.width), static_cast<float>(m_event.size.height) });
+      //view.setCenter(m_window.GetCenter());
+      //view.move(oldCenter - m_window.GetCenter());
+      //m_window.setView(view);
+
+      sf::View view = m_window.getView();
+      auto oldCenter = view.getCenter();
+      view.setSize({ static_cast<float>(m_event.size.width), static_cast<float>(m_event.size.height) });
+      view.setCenter(m_window.GetCenter());
+      view.move(oldCenter - m_window.GetCenter());
+      m_window.setView(view);
    }
 }
 
