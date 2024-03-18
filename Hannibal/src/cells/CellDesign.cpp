@@ -1,4 +1,4 @@
-#include <cell/CellDesign.h>
+#include <cells/CellDesign.h>
 #include <Window.h>
 
 CellDesign::CellDesign(sf::Vector2f topLeft, sf::Vector2f botRight,

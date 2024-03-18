@@ -1,13 +1,15 @@
 #include <Battlefield.h>
 #include <StandardLength.h>
 
-#include <cell/Cell.h>
+#include <cells/Cell.h>
+#include <cells/CellField.h>
 #include <event/EventManager.h>
+#include <event/EventObjectFactory.h>
 
 Battlefield::Battlefield(EventManagerPtr pEventManager, uint horizontalNum, uint verticalNum, const sf::Color& colorLine) :
-   m_eventObjectFactory(pEventManager),
+   m_pEventManager(pEventManager),
    m_gridLayer(),
-   m_cells()
+   m_cellFields()
 {
    float length = static_cast<float>(StandardLength::Get());
    float outlineThickness = length / 25;
@@ -24,9 +26,10 @@ Battlefield::Battlefield(EventManagerPtr pEventManager, uint horizontalNum, uint
          sf::Vector2f topLeft(x + outlineThickness + space, y + outlineThickness + space);
          sf::Vector2f botRight(x + length - (outlineThickness + space), y + length - (outlineThickness + space));
 
-         auto cell = std::dynamic_pointer_cast<Cell>
-            (m_eventObjectFactory.CreateCell(topLeft, botRight, sf::Color::White, colorLine, outlineThickness));
-         m_cells.push_back(cell);
+         auto cell = std::dynamic_pointer_cast<CellField>(
+                     EventObjectFactory::CreateCellField(m_pEventManager, topLeft, botRight,
+                                                         sf::Color::White, colorLine, outlineThickness));
+         m_cellFields.push_back(cell);
       }
    }
 }
@@ -35,8 +38,8 @@ void Battlefield::Show() const
 {
    m_gridLayer.Draw();
 
-   for (auto cell : m_cells)
+   for (auto cellField : m_cellFields)
    {
-      cell->Draw();
+      cellField->Draw();
    }
 }

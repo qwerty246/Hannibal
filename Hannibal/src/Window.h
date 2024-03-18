@@ -2,7 +2,8 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 
-class Window : public sf::RenderWindow
+class Window :
+   public sf::RenderWindow
 {
 private:
    Window() = default;

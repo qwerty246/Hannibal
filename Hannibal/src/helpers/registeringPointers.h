@@ -14,6 +14,8 @@
 //   typedef std::shared_ptr<sf::T> T ## Ptr;
 
 REGISTER_SHARED_PTR(Cell)
+REGISTER_SHARED_PTR(CellField)
+REGISTER_SHARED_PTR(CellUnit)
 REGISTER_SHARED_PTR(EventManager)
 REGISTER_SHARED_PTR(EventObject)
 //REGISTER_SHARED_PTR_SF(Vertex)

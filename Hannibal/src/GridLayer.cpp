@@ -1,7 +1,7 @@
 #include <GridLayer.h>
 #include <StandardLength.h>
 
-#include <cell/Cell.h>
+#include <cells/Cell.h>
 #include <event/EventManager.h>
 
 GridLayer::GridLayer() :

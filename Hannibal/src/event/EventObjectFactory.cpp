@@ -1,16 +1,21 @@
-#include <cell/Cell.h>
+#include <cells/Cell.h>
+#include <cells/CellField.h>
+#include <cells/CellUnit.h>
 #include <event/EventManager.h>
 #include <event/EventObjectFactory.h>
 
-EventObjectFactory::EventObjectFactory(EventManagerPtr pEventManager) :
-   m_pEventManager(pEventManager)
+CellFieldPtr EventObjectFactory::CreateCellField(EventManagerPtr pEventManager, sf::Vector2f topLeft, sf::Vector2f botRight,
+                                                 sf::Color colorLine, sf::Color fillColor, float thickness)
 {
+   auto pCell = std::make_shared<CellField>(CellField(pEventManager, topLeft, botRight, colorLine, fillColor, thickness));
+   pEventManager->RegisterEventObject(pCell);
+   return pCell;
 }
 
-EventObjectPtr EventObjectFactory::CreateCell(sf::Vector2f topLeft, sf::Vector2f botRight,
-                                              sf::Color colorLine, sf::Color fillColor, float thickness) const
+CellUnitPtr EventObjectFactory::CreateCellUnit(EventManagerPtr pEventManager, sf::Vector2f topLeft, sf::Vector2f botRight,
+                                               sf::Color colorLine, sf::Color fillColor, float thickness)
 {
-   auto pCell = std::make_shared<Cell>(Cell(m_pEventManager, topLeft, botRight, colorLine, fillColor, thickness));
-   m_pEventManager->RegisterEventObject(pCell);
+   auto pCell = std::make_shared<CellUnit>(CellUnit(pEventManager, topLeft, botRight, colorLine, fillColor, thickness));
+   pEventManager->RegisterEventObject(pCell);
    return pCell;
 }

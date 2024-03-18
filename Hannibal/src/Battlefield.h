@@ -2,7 +2,6 @@
 
 #include <vector>
 
-#include <event/EventObjectFactory.h>
 #include <GridLayer.h>
 #include <helpers/constants.h>
 #include <helpers/registeringPointers.h>
@@ -17,8 +16,8 @@ public:
    void Show() const;
 
 private:
-   EventObjectFactory m_eventObjectFactory;
+   EventManagerPtr m_pEventManager;
    GridLayer m_gridLayer;
-   std::vector<CellPtr> m_cells;
+   std::vector<CellFieldPtr> m_cellFields;
 };
 
